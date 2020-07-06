@@ -185,9 +185,13 @@ public class Solution {
         private RealMailService getRealMailService() {
             return realMailService;
         }
+
         @Override
-        Sendable processMail(Sendable mail);
+        public Sendable processMail(Sendable mail) {
+            return null;
         }
+
+    }
     public static class Spy implements MailService {
         public Spy(Logger logger) {
             if (mailMessage.getFrom().equals(AUSTIN_POWERS) ||
@@ -200,12 +204,21 @@ public class Solution {
                     mailMessage.getFrom() + " to " + mailMessage.getTo());
             }
         }
+
+        @Override
+        public Sendable processMail(Sendable mail) {
+            return mail;
+        }
     }
     public static class Thief implements MailService {
         public Thief(int minPrise) {
 
         }
 
+        @Override
+        public Sendable processMail(Sendable mail) {
+            return null;
+        }
     }
 
 }
